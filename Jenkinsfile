@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+      agent {
+        dockerfile {
+            args '--entrypoint=\'\''
+        }
+    }
     stages {
         stage('Build') {
             steps {
@@ -20,12 +24,9 @@ pipeline {
                     }
                 }
             }
+           
         }
-    agent {
-        dockerfile {
-            args '--entrypoint=\'\''
-        }
-    }
+
         
         stage('Push Docker Image') {
             when {
